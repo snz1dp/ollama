@@ -406,6 +406,16 @@ func PushHandler(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
+	username, err := cmd.Flags().GetString("username")
+	if err != nil {
+		return err
+	}
+
+	password, err := cmd.Flags().GetString("password")
+	if err != nil {
+		return err
+	}
+
 	p := progress.NewProgress(os.Stderr)
 	defer p.Stop()
 
@@ -440,7 +450,7 @@ func PushHandler(cmd *cobra.Command, args []string) error {
 		return nil
 	}
 
-	request := api.PushRequest{Name: args[0], Insecure: insecure}
+	request := api.PushRequest{Name: args[0], Insecure: insecure, Username: username, Password: password}
 	if err := client.Push(cmd.Context(), &request, fn); err != nil {
 		if spinner != nil {
 			spinner.Stop()
@@ -610,6 +620,16 @@ func PullHandler(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
+	username, err := cmd.Flags().GetString("username")
+	if err != nil {
+		return err
+	}
+
+	password, err := cmd.Flags().GetString("password")
+	if err != nil {
+		return err
+	}
+
 	client, err := api.ClientFromEnvironment()
 	if err != nil {
 		return err
@@ -650,7 +670,7 @@ func PullHandler(cmd *cobra.Command, args []string) error {
 		return nil
 	}
 
-	request := api.PullRequest{Name: args[0], Insecure: insecure}
+	request := api.PullRequest{Name: args[0], Insecure: insecure, Username: username, Password: password}
 	if err := client.Pull(cmd.Context(), &request, fn); err != nil {
 		return err
 	}
@@ -1105,6 +1125,8 @@ Environment Variables:
 	}
 
 	pullCmd.Flags().Bool("insecure", false, "Use an insecure registry")
+	pullCmd.Flags().String("username", "", "Username of registry")
+	pullCmd.Flags().String("password", "", "Password of registry")
 
 	pushCmd := &cobra.Command{
 		Use:     "push MODEL",
@@ -1115,6 +1137,8 @@ Environment Variables:
 	}
 
 	pushCmd.Flags().Bool("insecure", false, "Use an insecure registry")
+	pushCmd.Flags().String("username", "", "Username of registry")
+	pushCmd.Flags().String("password", "", "Password of registry")
 
 	listCmd := &cobra.Command{
 		Use:     "list",

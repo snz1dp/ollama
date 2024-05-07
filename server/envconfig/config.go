@@ -11,25 +11,25 @@ import (
 )
 
 var (
-	// Set via OLLAMA_ORIGINS in the environment
+	// Set via OLLAMA_ORIGINS in the environment，允许哪个站点访问
 	AllowOrigins []string
-	// Set via OLLAMA_DEBUG in the environment
+	// Set via OLLAMA_DEBUG in the environment，是否开启debug模式
 	Debug bool
-	// Set via OLLAMA_LLM_LIBRARY in the environment
+	// Set via OLLAMA_LLM_LIBRARY in the environment，llm库的路径
 	LLMLibrary string
-	// Set via OLLAMA_MAX_LOADED_MODELS in the environment
+	// Set via OLLAMA_MAX_LOADED_MODELS in the environment，最大加载模型数量
 	MaxRunners int
-	// Set via OLLAMA_MAX_QUEUE in the environment
+	// Set via OLLAMA_MAX_QUEUE in the environment，最大队列请求数量
 	MaxQueuedRequests int
-	// Set via OLLAMA_MAX_VRAM in the environment
+	// Set via OLLAMA_MAX_VRAM in the environment，最大内存限制
 	MaxVRAM uint64
-	// Set via OLLAMA_NOPRUNE in the environment
+	// Set via OLLAMA_NOPRUNE in the environment，是否开启不清理数据层
 	NoPrune bool
-	// Set via OLLAMA_NUM_PARALLEL in the environment
+	// Set via OLLAMA_NUM_PARALLEL in the environment，并行数量
 	NumParallel int
-	// Set via OLLAMA_RUNNERS_DIR in the environment
+	// Set via OLLAMA_RUNNERS_DIR in the environment，llm runner的路径
 	RunnersDir string
-	// Set via OLLAMA_TMPDIR in the environment
+	// Set via OLLAMA_TMPDIR in the environment，临时目录
 	TmpDir string
 )
 
