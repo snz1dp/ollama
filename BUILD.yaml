@@ -1,0 +1,51 @@
+
+# 名称
+name: ollama
+
+# 版本
+version: 0.1.9
+
+# 镜像编译参数
+docker:
+  # 镜像名称
+  image: snz1dp/ollama
+  tag: latest
+  # 编译文件
+  file: Dockerfile
+  # 目标平台
+  platform:
+  - linux/amd64
+  - linux/arm64
+
+# 服务定义
+service:
+
+  # 文件卷定义
+  volumes:
+  - data:/app/backend/data
+
+  # 端口定义
+  ports:
+  - 11434:11434
+
+  # 环境变量
+  envs:
+  - TZ=Asia/Shanghai
+  - OLLAMA_ORIGINS="*"
+  - OLLAMA_DEBUG="true"
+  - OLLAMA_MAX_LOADED_MODELS=3
+  - OLLAMA_MAX_QUEUE=512
+  - OLLAMA_MAX_VRAM=0
+  - OLLAMA_NOPRUNE="true"
+  - OLLAMA_NUM_PARALLEL=1
+  - OLLAMA_LLM_LIBRARY=""
+  - OLLAMA_RUNNERS_DIR=/tmp/ollama/runners
+  - OLLAMA_TMPDIR=/tmp/ollama
+
+  # 心跳检测
+  healthcheck:
+    url: /
+    interval: 10s
+    timeout: 10s
+    period: 60s
+    retries: 30
