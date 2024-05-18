@@ -132,6 +132,11 @@ ENV OLLAMA_HOST 0.0.0.0
 CMD ["/bin/ollama", "serve"]
 
 FROM runtime-$TARGETARCH
+
+RUN apt-get update && \
+    apt-get install -y curl && \
+    rm -rf /var/lib/apt/lists/*;
+
 EXPOSE 11434
 ENV OLLAMA_HOST 0.0.0.0
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
