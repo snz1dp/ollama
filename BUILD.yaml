@@ -9,7 +9,7 @@ version: 0.1.38
 docker:
   # 镜像名称
   image: snz1dp/ollama
-  tag: latest
+  tag: 0.1.38
   # 编译文件
   file: Dockerfile
   # 目标平台
