@@ -3,7 +3,7 @@
 name: ollama
 
 # 版本
-version: 0.1.9
+version: 0.1.38
 
 # 镜像编译参数
 docker:
@@ -41,6 +41,8 @@ service:
   - OLLAMA_LLM_LIBRARY=""
   - OLLAMA_RUNNERS_DIR=/tmp/ollama/runners
   - OLLAMA_TMPDIR=/tmp/ollama
+  - NVIDIA_VISIBLE_DEVICES
+  - NVIDIA_DRIVER_CAPABILITIES=compute,utility
 
   # 心跳检测
   healthcheck:
