@@ -22,7 +22,7 @@ service:
 
   # 文件卷定义
   volumes:
-  - data:/app/backend/data
+  - data:/root/.ollama
 
   # 端口定义
   ports:
@@ -46,7 +46,7 @@ service:
 
   # 心跳检测
   healthcheck:
-    url: /
+    url: http://localhost:11434/
     interval: 10s
     timeout: 10s
     period: 60s
